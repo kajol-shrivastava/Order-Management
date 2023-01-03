@@ -1,4 +1,4 @@
-const customerModel = require("../models/custormerModel")
+const customerModel = require("../models/customerModel")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const { isValid, isValidObjectId,
@@ -36,7 +36,7 @@ const register = async function (req, res) {
         if (!isValidMail(email)) {
             return res.status(400).send({ status: false, msg: "Please enter a valid email address." })
         }
-        let mailCheck = await userModel.findOne({ email })
+        let mailCheck = await customerModel.findOne({ email })
         if (mailCheck) {
             return res.status(400).send({ status: false, msg: `${email} already registered, try new.` })
         }
@@ -47,7 +47,7 @@ const register = async function (req, res) {
         if (!isValidMobile(phone)) {
             return res.status(400).send({ status: false, msg: "Please enter a valid Indian number." })
         }
-        let phoneCheck = await userModel.findOne({ phone })
+        let phoneCheck = await customerModel.findOne({ phone })
         if (phoneCheck) {
             return res.status(400).send({ status: false, msg: `${phone} already registered, try new.` })
         }
@@ -100,7 +100,7 @@ const userLogin = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Please enter a password which contains min 8 and maximum 15 " })
         }
 
-        const loginUser = await userModel.findOne({ email: email })
+        const loginUser = await customerModel.findOne({ email: email })
         if (!loginUser) {
             return res.status(401).send({ status: false, message: "Not register email-id" })
         }

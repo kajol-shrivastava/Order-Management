@@ -13,7 +13,7 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    totalPrice: {
+    totalprice: {
         type: Number,
         required: true,
         comment: "Holds total price of all the items "
@@ -21,18 +21,19 @@ const orderSchema = new mongoose.Schema({
     discount: {
         type: Number,
         default:0,
-        comment: "Holds total number of items in the cart"
     },
-    totalQuantity: {
-        type: Number,
-        required: true,
-        comment: "Holds total number of quantity in the cart"
+    finalAmount:{
+        type:Number,
+        default:0
     },
     cancellable: { 
         type: Boolean, 
-        default: true 
+        default: false 
     },
-    
+    isCancelled:{
+        type:Boolean,
+        default:false
+    },
     deletedAt: {
         type: Date,
         default: null
