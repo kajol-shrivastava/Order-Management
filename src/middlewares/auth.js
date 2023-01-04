@@ -8,6 +8,7 @@ const authentication = async function (req, res, next) {
             return res.status(401).send({ status: false, message: "bearer token must be present" });
         bearerToken = bearerToken.split(" ")
         let token = bearerToken[1]
+        
 
         jwt.verify(token, "pro@3", function (err, decodedtoken) {
             if (err) {
