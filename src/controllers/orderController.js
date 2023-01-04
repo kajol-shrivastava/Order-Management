@@ -1,9 +1,6 @@
 const orderModel = require("../models/orderModel")
 const customerModel = require("../models/customerModel")
-const { isValid, isValidObjectId,
-    validName, isValidMail,
-    isValidMobile, isValidRequest,
-    isValidPassword, } = require("../validator/validator")
+const { isValid, isValidObjectId, isValidRequest, } = require("../validator/validator")
 
 
 const createOrder = async function (req, res) {
@@ -72,9 +69,7 @@ const createOrder = async function (req, res) {
         }
         let updatedcustomer = await customerModel.findOneAndUpdate({ _id: customerId }, { $set:{customerType: customerType, orderNo: orderNo}},{new:true })
 
-        // if(cancellable&&cancellable==true){
-        //     cancellable
-        // }
+
         let orderDetail = { customerId, productname, totalprice, discount, finalAmount }
         let newOrder = await orderModel.create(orderDetail)
         newOrder["_doc"].customerDetails = updatedcustomer

@@ -29,11 +29,7 @@ const isValidMobile = function (num) {
 };
 
 
-const removeExtraSpace = function (value) {
-  const res = value.split(" ").filter(word => word).join(" ")
- 
-  return res
-}
+
 
 
 const isValidObjectId = function (objectId) {
